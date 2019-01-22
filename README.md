@@ -1,6 +1,8 @@
 
 # sudoku
       
+## CHANGES MADE:
+added a boolean parameter to makepuzzle that when called as true, will generate a much easier puzzle that can be solved in minutes
 
 Sudoku generator and solver for [node.js](http://nodejs.org)
 
