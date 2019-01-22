@@ -368,7 +368,7 @@ function makeArray(length, value) {
 }
 
 module.exports = {
-	makepuzzle  : function () { return makepuzzle(solvepuzzle(makeArray(81, null))); },
+	makepuzzle  : function (blitz) { return makepuzzle(solvepuzzle(makeArray(81, null)), blitz); },
 	solvepuzzle : solvepuzzle,
 	ratepuzzle  : ratepuzzle,
 	posfor      : posfor
