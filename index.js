@@ -3,18 +3,21 @@
 //
 // This is a port of David Bau's python  implementation:
 // http://davidbau.com/archives/2006/09/04/sudoku_generator.html
+//
+// **Forked from https://github.com/dachev/sudoku
+// Added a blitz parameter to makepuzzle() since default puzzles were too difficult
 
 var undefined;
 var _ = require('underscore');
 
-function makepuzzle(board) {
+function makepuzzle(board, blitz) {
 	var puzzle  = [];
 	var deduced = makeArray(81, null);
 	var order   = _.range(81);
 
 	shuffleArray(order);
 
-	for (var i = 0; i < order.length; i++) {
+	for (var i = 0; i < order.length; i++)  {
 		var pos = order[i];
 
 		if (deduced[pos] == null) {
@@ -31,9 +34,15 @@ function makepuzzle(board) {
 		removeElement(puzzle, i);
 
 		var rating = checkpuzzle(boardforentries(puzzle), board);
-		if (rating == -1) {
-			puzzle.push(e);
-		}
+        if(blitz){
+            if (rating < 1) {
+                puzzle.push(e);
+            }
+        }else{
+            if (rating == -1) {
+                puzzle.push(e);
+            }
+        }
 	}
 
 	return boardforentries(puzzle);
